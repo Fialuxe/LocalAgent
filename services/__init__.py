@@ -2,6 +2,7 @@ from .aggregator import InfoAggregator
 from .base import BaseProvider
 from .calendar_provider import GoogleCalendarProvider
 from .config import APIConfig
+from .google_news_search import GoogleNewsSearchProvider
 from .google_trends_rss import GoogleTrendsRSSProvider
 from .hacker_news import HackerNewsProvider
 from .holidays import HolidayProvider
@@ -56,6 +57,7 @@ __all__ = [
     "HolidayProvider",
     "HackerNewsProvider",
     "YahooJapanNewsProvider",
+    "GoogleNewsSearchProvider",  # キーワード指定ニュースRSS（ファッション/グルメ等）
     "GoogleTrendsRSSProvider",   # pytrends より安定したトレンド取得
     "TrendsProvider",            # pytrends（不安定だがバックアップとして残す）
     # プロバイダ（APIキーあり）

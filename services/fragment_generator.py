@@ -98,13 +98,17 @@ class FragmentGenerator:
             result = result.strip()
             if not result or len(result) < 5:
                 return None
-            # 要約・敬語・禁止ワード検出
-            banned = ["です。", "ます。", "まとめると", "つまり", "ということで", "すごく", "すごい"]
-            if any(marker in result for marker in banned):
-                logger.debug("FragmentGenerator: 禁止ワード検出のためスキップ: %r", result[:40])
+            # 敬語・まとめ表現は reject（品質低下のため）
+            hard_reject = ["です。", "ます。", "まとめると", "つまり", "ということで"]
+            if any(marker in result for marker in hard_reject):
+                logger.debug("FragmentGenerator: 要約/敬語検出のためスキップ: %r", result[:40])
                 return None
-            # 長すぎる場合は最初の2文に切る
+            # 禁止語は reject せず置換（フラグメント全体を捨てるのはもったいない）
             import re as _re
+            result = _re.sub(r'すごく', 'けっこう', result)
+            result = _re.sub(r'すごい', 'なかなか', result)
+            result = _re.sub(r'すごかった', 'なかなかだった', result)
+            # 長すぎる場合は最初の2文に切る
             sentences = _re.split(r'(?<=[。！？\n])', result)
             sentences = [s.strip() for s in sentences if s.strip()]
             result = "".join(sentences[:2]).strip()
