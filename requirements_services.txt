@@ -1,0 +1,31 @@
+# LocalAgent — サービス層 依存パッケージ
+# pip install -r requirements_services.txt
+
+# 非同期HTTPクライアント
+httpx>=0.27.0
+
+# データモデル（型安全）
+pydantic>=2.7.0
+
+# バックグラウンドスケジューラ
+apscheduler>=3.10.4
+
+# Google Trends
+pytrends>=4.9.2
+
+# Google Calendar API
+google-api-python-client>=2.130.0
+google-auth-httplib2>=0.2.0
+google-auth-oauthlib>=1.2.0
+
+# OpenAI互換クライアント（llama.cpp / LM Studio 両対応）
+openai>=1.35.0
+
+# システム状態取得（CPU / メモリ / バッテリー）
+psutil>=5.9.0
+
+# トークン安全保管（Windows Credential Manager / macOS Keychain）
+keyring>=24.0.0
+
+# .env ファイルの読み込み
+python-dotenv>=1.0.0
